@@ -7,6 +7,15 @@ plugins {
 
 @Suppress("UnstableApiUsage")
 android {
+
+    applicationVariants.all {
+        outputs.all {
+            if (this is com.android.build.gradle.internal.api.BaseVariantOutputImpl) {
+                outputFileName = "Dolphin-${buildType.name}.apk"
+            }
+        }
+    }
+
     compileSdk = 36
     ndkVersion = "30.0.15729638"
 

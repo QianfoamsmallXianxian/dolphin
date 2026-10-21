@@ -44,7 +44,6 @@
         android:fullBackupContent="@xml/backup_rules"
         android:dataExtractionRules="@xml/backup_rules_api_31"
         android:supportsRtl="true"
-        android:isGame="true"
         android:banner="@drawable/banner_tv"
         android:hasFragileUserData="true">
         <meta-data

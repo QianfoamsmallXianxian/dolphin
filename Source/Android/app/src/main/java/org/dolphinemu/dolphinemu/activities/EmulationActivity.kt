@@ -201,6 +201,7 @@ class EmulationActivity : AppCompatActivity(), ThemeProvider {
         }
 
 
+
         MainPresenter.skipRescanningLibrary()
 
         if (savedInstanceState == null) {

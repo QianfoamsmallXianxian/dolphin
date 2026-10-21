@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity(), MainView, OnRefreshListener, ThemeProv
         }
 
 
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
