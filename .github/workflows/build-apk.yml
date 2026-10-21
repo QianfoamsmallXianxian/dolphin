@@ -83,8 +83,14 @@ jobs:
             --max-workers=4 \
             -Dorg.gradle.jvmargs="-Xmx4g -XX:MaxMetaspaceSize=1g"
 
+      - name: Rename APK
+        working-directory: Source/Android
+        run: |
+          mkdir -p build/outputs/apk/debug/
+          mv app/build/outputs/apk/debug/app-debug.apk build/outputs/apk/debug/Dolphin.apk || true
+
       - uses: actions/upload-artifact@v4
         with:
           name: Dolphin
-          path: Source/Android/app/build/outputs/apk/${{ github.event.inputs.build_type || 'debug' }}/*.apk
+          path: Source/Android/build/outputs/apk/debug/Dolphin.apk
           if-no-files-found: error

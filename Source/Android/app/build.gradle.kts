@@ -7,12 +7,6 @@ plugins {
 
 @Suppress("UnstableApiUsage")
 android {
-
-    applicationVariants.all {
-        outputs.all {
-            if (this is com.android.build.gradle.internal.api.BaseVariantOutputImpl) {
-                outputFileName = "Dolphin-${buildType.name}.apk"
-            }
         }
     }
 
@@ -107,7 +101,6 @@ android {
     namespace = "org.dolphinemu.dolphinemu"
 
     defaultConfig {
-        resourceConfigurations += listOf("zh-rCN")
         ndk {
             // We only officially support arm64-v8a and x86_64.
             // If you want to try building other ABIs anyway, you need -DENABLE_GENERIC=ON.
