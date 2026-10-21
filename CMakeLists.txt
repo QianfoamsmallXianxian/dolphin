@@ -1,7 +1,7 @@
 ########################################
 # General setup
 #
-cmake_minimum_required(VERSION 3.25...4.2.1)
+cmake_minimum_required(VERSION 3.22...4.2.1)
 
 cmake_policy(SET CMP0080 OLD) # allow using BundleUtilities at configure time
 
