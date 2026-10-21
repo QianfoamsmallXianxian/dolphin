@@ -106,9 +106,9 @@ fun NetplaySetupScreen(
     val localNetworkPermissionState: PermissionState? =
         if (
             connectionType is ConnectionType.DirectConnection &&
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN
+            Build.VERSION.SDK_INT >= 36
         ) {
-            rememberPermissionState(Manifest.permission.ACCESS_LOCAL_NETWORK) { _ ->
+            rememberPermissionState("android.permission.ACCESS_LOCAL_NETWORK") { _ ->
                 // Try to connect even if the user denied the permission. The warning is on screen
                 // so it's up to them to determine if they are using local network and need to grant it.
                 when (connectionRole) {
@@ -430,7 +430,7 @@ private fun LocalNetworkPermissionInfo(
 ) {
     if (
         connectionType is ConnectionType.DirectConnection &&
-        Build.VERSION.SDK_INT >= Build.VERSION_CODES.CINNAMON_BUN
+        Build.VERSION.SDK_INT >= 36
     ) {
         val context = LocalContext.current
 
@@ -449,7 +449,7 @@ private fun LocalNetworkPermissionInfo(
 
         lateinit var permissionState: PermissionState
         permissionState =
-            rememberPermissionState(Manifest.permission.ACCESS_LOCAL_NETWORK) { granted ->
+            rememberPermissionState("android.permission.ACCESS_LOCAL_NETWORK") { granted ->
                 if (
                     !granted &&
                     !dialogShown &&

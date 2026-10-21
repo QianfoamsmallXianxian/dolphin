@@ -17,7 +17,7 @@ on:
 env:
   NDK_VERSION: '30.0.15729638'
   CMAKE_VERSION: '3.22.1'
-  COMPILE_SDK: '37'
+  COMPILE_SDK: '36'
   BUILD_TOOLS: '36.0.0'
 
 jobs:
@@ -46,7 +46,7 @@ jobs:
       - name: Install Android SDK
         run: |
           yes | sdkmanager --licenses > /dev/null || true
-          sdkmanager --channel=3 --install \
+          sdkmanager --install \
             "platforms;android-${COMPILE_SDK}" \
             "build-tools;${BUILD_TOOLS}" \
             "ndk;${NDK_VERSION}" \
