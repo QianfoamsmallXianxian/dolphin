@@ -85,6 +85,6 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: Dolphin-${{ github.event.inputs.build_type || 'debug' }}
+          name: Dolphin
           path: Source/Android/app/build/outputs/apk/${{ github.event.inputs.build_type || 'debug' }}/*.apk
           if-no-files-found: error
