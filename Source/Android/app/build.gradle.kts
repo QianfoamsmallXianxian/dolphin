@@ -108,7 +108,7 @@ android {
                 arguments(
                     "-DANDROID_STL=c++_static",
                     "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON",
-                    "-DCMAKE_BUILD_TYPE=Release", "-DCMAKE_C_FLAGS=-march=armv8-a+crc -mtune=cortex-a76", "-DCMAKE_CXX_FLAGS=-march=armv8-a+crc -mtune=cortex-a76"
+                    "-DCMAKE_BUILD_TYPE=Release", "-DCMAKE_C_FLAGS=-march=armv8.2-a+fp16+crc+lse+crypto -mtune=cortex-a76", "-DCMAKE_CXX_FLAGS=-march=armv8.2-a+fp16+crc+lse+crypto -mtune=cortex-a76"
                     // , "-DENABLE_GENERIC=ON"
                 )
 
