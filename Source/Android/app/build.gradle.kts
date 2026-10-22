@@ -7,10 +7,7 @@ plugins {
 
 @Suppress("UnstableApiUsage")
 android {
-        }
-    }
-
-    compileSdk = 36
+    compileSdk = 37
     ndkVersion = "30.0.15729638"
 
     buildFeatures {
@@ -39,12 +36,9 @@ android {
     }
 
     defaultConfig {
-        resourceConfigurations += listOf("zh-rCN")
-        resourceConfigurations += listOf("zh-rCN")
-        resourceConfigurations += listOf("zh-rCN")
         applicationId = "org.dolphinemu.dolphinemu"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 37
 
         versionCode = getBuildVersionCode()
 
@@ -97,14 +91,12 @@ android {
     externalNativeBuild {
         cmake {
             path = file("../../../CMakeLists.txt")
-            version = "3.22.1"
+            version = "3.25.0+"
         }
     }
     namespace = "org.dolphinemu.dolphinemu"
 
     defaultConfig {
-        resourceConfigurations += listOf("zh-rCN")
-        resourceConfigurations += listOf("zh-rCN")
         ndk {
             // We only officially support arm64-v8a and x86_64.
             // If you want to try building other ABIs anyway, you need -DENABLE_GENERIC=ON.
