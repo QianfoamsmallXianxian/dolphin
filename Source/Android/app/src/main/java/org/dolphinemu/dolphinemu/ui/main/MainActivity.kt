@@ -37,12 +37,6 @@ import org.dolphinemu.dolphinemu.utils.WiiUtils
 
 class MainActivity : AppCompatActivity(), MainView, OnRefreshListener, ThemeProvider {
 
-    override fun attachBaseContext(newBase: android.content.Context) {
-        val config = android.content.res.Configuration(newBase.resources.configuration)
-        config.setLocale(java.util.Locale.SIMPLIFIED_CHINESE)
-        super.attachBaseContext(newBase.createConfigurationContext(config))
-    }
-
     override var themeId = 0
 
     private val presenter = MainPresenter(this, this)
@@ -58,8 +52,6 @@ class MainActivity : AppCompatActivity(), MainView, OnRefreshListener, ThemeProv
         enableEdgeToEdge()
 
         super.onCreate(savedInstanceState)
-
-        androidx.appcompat.app.AppCompatDelegate.setApplicationLocales(androidx.core.os.LocaleListCompat.forLanguageTags("zh-rCN"))
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             val currentRefreshRate = windowManager.defaultDisplay.refreshRate
             val lp = window.attributes
