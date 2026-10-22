@@ -3,6 +3,16 @@
 #
 cmake_minimum_required(VERSION 3.22...4.2.1)
 
+if(ANDROID)
+    add_compile_options(-O3)
+    if(ANDROID_ABI STREQUAL "arm64-v8a")
+        add_compile_options(-march=armv8.2-a+dotprod+fp16+crc+lse+crypto -mtune=cortex-a76)
+    elseif(ANDROID_ABI STREQUAL "x86_64")
+        add_compile_options(-march=x86-64-v3)
+    endif()
+endif()
+
+
 if(ANDROID AND ANDROID_ABI STREQUAL "arm64-v8a")
     add_compile_options(-march=armv8.2-a+dotprod+fp16+crc+lse+crypto)
     add_compile_options(-mtune=cortex-a76)
@@ -445,14 +455,7 @@ if(ENABLE_VTUNE)
   )
 endif()
 
-if(ANDROID)
-  message(STATUS "Building for Android")
-  if(NOT ENABLE_HEADLESS)
-    add_definitions(-DANDROID)
-    if(ENABLE_NOGUI)
-      message(STATUS "Building Android app, disabling NoGUI frontend.")
-      set(ENABLE_NOGUI 0)
-    endif()
+
   else()
     # Lie to cmake a bit. We are cross compiling to Android
     # but not as a shared library. We want an executable.
