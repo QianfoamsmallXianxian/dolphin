@@ -444,30 +444,25 @@ if(FASTLOG)
   add_definitions(-DDEBUGFAST)
 endif()
 
-if(ENABLE_VTUNE)
-  set(VTUNE_DIR "/opt/intel/vtune_amplifier")
-  add_definitions(-DUSE_VTUNE)
-  include_directories("${VTUNE_DIR}/include")
-  set(VTUNE_LIBRARIES
-      "${VTUNE_DIR}/lib64/libjitprofiling.a"
-      "${VTUNE_DIR}/lib64/libittnotify.a"
-  )
-endif()
-
-
-  else()
-    # Lie to cmake a bit. We are cross compiling to Android
-    # but not as a shared library. We want an executable.
-    set(ANDROID 0)
+if(ANDROID)
+  if(ENABLE_VTUNE)
+    set(VTUNE_DIR "/opt/intel/vtune_amplifier")
+    add_definitions(-DUSE_VTUNE)
+    include_directories("${VTUNE_DIR}/include")
+    set(VTUNE_LIBRARIES
+        "${VTUNE_DIR}/lib64/libjitprofiling.a"
+        "${VTUNE_DIR}/lib64/libittnotify.a"
+    )
   endif()
-  set(ENABLE_QT 0)
-  set(USE_DISCORD_PRESENCE 0)
 
-  # We are cross compiling, search only the toolchain for libraries and includes
   SET(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
   SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
   SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
   SET(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
+  set(ENABLE_QT 0)
+  set(USE_DISCORD_PRESENCE 0)
+else()
+  set(ANDROID 0)
 endif()
 
 if(ENABLE_HEADLESS)
