@@ -14,7 +14,6 @@ endif()
 
 
 if(ANDROID AND ANDROID_ABI STREQUAL "arm64-v8a")
-    add_compile_options(-march=armv8.2-a+dotprod+fp16+crc+lse+crypto)
     add_compile_options(-mtune=cortex-a76)
 endif()
 
