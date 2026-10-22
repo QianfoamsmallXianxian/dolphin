@@ -310,8 +310,8 @@ class SettingsFragmentPresenter(
                 MenuTag.HACKS -> addHackSettings(sl)
                 MenuTag.STATISTICS -> addStatisticsSettings(sl)
                 MenuTag.ADVANCED_GRAPHICS -> addAdvancedGraphicsSettings(sl)
-                MenuTag.CONFIG_LOG -> addLogConfigurationSettings(sl)
-                MenuTag.DEBUG -> addDebugSettings(sl)
+                // MenuTag.CONFIG_LOG -> addLogConfigurationSettings(sl)
+                // MenuTag.DEBUG -> addDebugSettings(sl)
                 MenuTag.GCPAD_1, MenuTag.GCPAD_2, MenuTag.GCPAD_3, MenuTag.GCPAD_4 -> addGcPadSubSettings(
                     sl, targetMenuTag.subType, extras.getInt(ARG_CONTROLLER_TYPE)
                 )
@@ -366,8 +366,8 @@ class SettingsFragmentPresenter(
         sl.add(SubmenuSetting(context, R.string.wii_submenu, MenuTag.CONFIG_WII))
         sl.add(SubmenuSetting(context, R.string.achievements_submenu, MenuTag.CONFIG_ACHIEVEMENTS))
         sl.add(SubmenuSetting(context, R.string.advanced_submenu, MenuTag.CONFIG_ADVANCED))
-        sl.add(SubmenuSetting(context, R.string.log_submenu, MenuTag.CONFIG_LOG))
-        sl.add(SubmenuSetting(context, R.string.debug_submenu, MenuTag.DEBUG))
+        // sl.add(SubmenuSetting(context, R.string.log_submenu, MenuTag.CONFIG_LOG))
+        // sl.add(SubmenuSetting(context, R.string.debug_submenu, MenuTag.DEBUG))
         sl.add(
             RunRunnable(
                 context, R.string.user_data_submenu, 0, 0, 0, false
