@@ -33,7 +33,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ninja-build ccache
       - name: Setup JDK 21
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '21'
