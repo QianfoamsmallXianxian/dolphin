@@ -199,8 +199,7 @@ void PerformanceMetrics::DrawImGuiStats(const float backbuffer_scale)
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 4.f * backbuffer_scale));
 
     // Position in the top-right corner of the screen.
-    ImGui::SetNextWindowPos(ImVec2(window_x, window_y), set_next_position_condition,
-                            ImVec2(1.0f, 0.0f));
+    ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f - 120.0f, 10.0f), ImGuiCond_Always);
     ImGui::SetNextWindowSize(ImVec2(graph_width, graph_height), set_next_size_condition);
     ImGui::SetNextWindowBgAlpha(bg_alpha);
     if (ImGui::Begin("PerformanceGraphs", nullptr, graph_flags))
@@ -275,8 +274,7 @@ void PerformanceMetrics::DrawImGuiStats(const float backbuffer_scale)
   if (g_ActiveConfig.bShowSpeed)
   {
     // Position in the top-right corner of the screen.
-    ImGui::SetNextWindowPos(ImVec2(window_x, window_y), set_next_position_condition,
-                            ImVec2(1.0f, 0.0f));
+    ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f - 120.0f, 10.0f), ImGuiCond_Always);
     ImGui::SetNextWindowBgAlpha(bg_alpha);
 
     if (ImGui::Begin("SpeedStats", nullptr, imgui_flags))
@@ -295,8 +293,7 @@ void PerformanceMetrics::DrawImGuiStats(const float backbuffer_scale)
   if (g_ActiveConfig.bShowFPS || g_ActiveConfig.bShowFTimes)
   {
     // Position in the top-right corner of the screen.
-    ImGui::SetNextWindowPos(ImVec2(window_x, window_y), set_next_position_condition,
-                            ImVec2(1.0f, 0.0f));
+    ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f - 120.0f, 10.0f), ImGuiCond_Always);
     ImGui::SetNextWindowBgAlpha(bg_alpha);
 
     if (ImGui::Begin("FPSStats", nullptr, imgui_flags))
@@ -326,8 +323,7 @@ void PerformanceMetrics::DrawImGuiStats(const float backbuffer_scale)
   if (g_ActiveConfig.bShowVPS || g_ActiveConfig.bShowVTimes)
   {
     // Position in the top-right corner of the screen.
-    ImGui::SetNextWindowPos(ImVec2(window_x, window_y), set_next_position_condition,
-                            ImVec2(1.0f, 0.0f));
+    ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f - 120.0f, 10.0f), ImGuiCond_Always);
     ImGui::SetNextWindowBgAlpha(bg_alpha);
 
     if (ImGui::Begin("VPSStats", nullptr, imgui_flags))
@@ -352,8 +348,7 @@ void PerformanceMetrics::DrawImGuiStats(const float backbuffer_scale)
 
   if (g_ActiveConfig.bShowInternalResolution)
   {
-    ImGui::SetNextWindowPos(ImVec2(window_x, window_y), set_next_position_condition,
-                            ImVec2(1.0f, 0.0f));
+    ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f - 120.0f, 10.0f), ImGuiCond_Always);
     ImGui::SetNextWindowBgAlpha(bg_alpha);
 
     if (ImGui::Begin("ResolutionStats", nullptr, imgui_flags))
