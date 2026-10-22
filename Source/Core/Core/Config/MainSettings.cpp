@@ -62,7 +62,7 @@ constexpr bool DEFAULT_CPU_THREAD = true;
 #else
 constexpr bool DEFAULT_CPU_THREAD = false;
 #endif
-const Info<bool> MAIN_CPU_THREAD{{System::Main, "Core", "CPUThread"}, DEFAULT_CPU_THREAD};
+const Info<bool> MAIN_CPU_THREAD{{System::Main, "Core", "CPUThread"}, true};
 const Info<bool> MAIN_LOAD_GAME_INTO_MEMORY{{System::Main, "Core", "LoadGameIntoMemory"}, false};
 const Info<bool> MAIN_SYNC_ON_SKIP_IDLE{{System::Main, "Core", "SyncOnSkipIdle"}, true};
 const Info<std::string> MAIN_DEFAULT_ISO{{System::Main, "Core", "DefaultISO"}, ""};
@@ -217,7 +217,7 @@ const Info<bool> MAIN_CONNECT_WIIMOTES_FOR_CONTROLLER_INTERFACE{
 const Info<bool> MAIN_MMU{{System::Main, "Core", "MMU"}, false};
 const Info<bool> MAIN_PAUSE_ON_PANIC{{System::Main, "Core", "PauseOnPanic"}, false};
 const Info<int> MAIN_BB_DUMP_PORT{{System::Main, "Core", "BBDumpPort"}, -1};
-const Info<bool> MAIN_SYNC_GPU{{System::Main, "Core", "SyncGPU"}, false};
+const Info<bool> MAIN_SYNC_GPU{{System::Main, "Core", "SyncGPU"}, true};
 const Info<int> MAIN_SYNC_GPU_MAX_DISTANCE{{System::Main, "Core", "SyncGpuMaxDistance"}, 200000};
 const Info<int> MAIN_SYNC_GPU_MIN_DISTANCE{{System::Main, "Core", "SyncGpuMinDistance"}, -200000};
 const Info<float> MAIN_SYNC_GPU_OVERCLOCK{{System::Main, "Core", "SyncGpuOverclock"}, 1.0f};
