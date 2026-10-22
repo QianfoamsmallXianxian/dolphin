@@ -71,7 +71,7 @@ static float DrawMessage(int index, Message& msg, const ImVec2& position, int ti
   const std::string window_name = fmt::format("osd_{}", index);
 
   // The size must be reset, otherwise the length of old messages could influence new ones.
-  ImGui::SetNextWindowPos(position);
+  ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f - 60.0f, 10.0f), ImGuiCond_Always);
   ImGui::SetNextWindowSize(ImVec2(0.0f, 0.0f));
 
   // Gradually fade old messages away (except in their first frame)
@@ -123,6 +123,7 @@ static float DrawMessage(int index, Message& msg, const ImVec2& position, int ti
   }
 
   ImGui::End();
+    ImGui::PopStyleColor();
   ImGui::PopStyleVar();
 
   msg.ever_drawn = true;
