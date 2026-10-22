@@ -202,6 +202,12 @@ void VideoConfig::Refresh()
   customDriverLibraryName = Config::Get(Config::GFX_DRIVER_LIB_NAME);
 
   vertex_loader_type = Config::Get(Config::GFX_VERTEX_LOADER_TYPE);
+  // AUTO_FIX_START
+  bEFBAccessEnable = true;
+  bEFBEmulateFormatChanges = true;
+  bSkipEFBCopyToRam = false;
+  bDeferEFBCopies = false;
+  // AUTO_FIX_END
 }
 
 void VideoConfig::VerifyValidity()
