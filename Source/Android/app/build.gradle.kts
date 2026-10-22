@@ -41,6 +41,7 @@ android {
     defaultConfig {
         resourceConfigurations += listOf("zh-rCN")
         resourceConfigurations += listOf("zh-rCN")
+        resourceConfigurations += listOf("zh-rCN")
         applicationId = "org.dolphinemu.dolphinemu"
         minSdk = 24
         targetSdk = 36
@@ -102,6 +103,7 @@ android {
     namespace = "org.dolphinemu.dolphinemu"
 
     defaultConfig {
+        resourceConfigurations += listOf("zh-rCN")
         resourceConfigurations += listOf("zh-rCN")
         ndk {
             // We only officially support arm64-v8a and x86_64.
