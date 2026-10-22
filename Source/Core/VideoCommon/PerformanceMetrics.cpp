@@ -284,8 +284,8 @@ void PerformanceMetrics::DrawImGuiStats(const float backbuffer_scale)
       else
         window_x -= ImGui::GetWindowWidth() + window_padding;
       clamp_window_position();
-      ImGui::TextColored(ImVec4(r, g, b, 1.0f), "Speed:%4.0lf%%", 100.0 * speed);
-      ImGui::TextColored(ImVec4(r, g, b, 1.0f), "Max:%6.0lf%%", 100.0 * GetMaxSpeed());
+      ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), "Speed:%4.0lf%%", 100.0 * speed);
+      ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), "Max:%6.0lf%%", 100.0 * GetMaxSpeed());
     }
     ImGui::End();
   }
@@ -304,17 +304,17 @@ void PerformanceMetrics::DrawImGuiStats(const float backbuffer_scale)
         window_x -= ImGui::GetWindowWidth() + window_padding;
       clamp_window_position();
       if (g_ActiveConfig.bShowFPS)
-        ImGui::TextColored(ImVec4(r, g, b, 1.0f), "FPS:%7.2lf", fps);
+        ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), "FPS:%7.2lf", fps);
       if (g_ActiveConfig.bShowFTimes)
       {
-        ImGui::TextColored(ImVec4(r, g, b, 1.0f), "dt:%6.2lfms",
+        ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), "dt:%6.2lfms",
                            DT_ms(m_fps_counter.GetDtAvg()).count());
-        ImGui::TextColored(ImVec4(r, g, b, 1.0f), " ±:%6.2lfms",
+        ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), " ±:%6.2lfms",
                            DT_ms(m_fps_counter.GetDtStd()).count());
 
         const auto offset =
             DT_ms(m_frame_presentation_offset.load(std::memory_order_relaxed)).count();
-        ImGui::TextColored(ImVec4(r, g, b, 1.0f), "ofs:%5.1lfms", offset);
+        ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), "ofs:%5.1lfms", offset);
       }
     }
     ImGui::End();
@@ -334,12 +334,12 @@ void PerformanceMetrics::DrawImGuiStats(const float backbuffer_scale)
         window_x -= ImGui::GetWindowWidth() + window_padding;
       clamp_window_position();
       if (g_ActiveConfig.bShowVPS)
-        ImGui::TextColored(ImVec4(r, g, b, 1.0f), "VPS:%7.2lf", vps);
+        ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), "VPS:%7.2lf", vps);
       if (g_ActiveConfig.bShowVTimes)
       {
-        ImGui::TextColored(ImVec4(r, g, b, 1.0f), "dt:%6.2lfms",
+        ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), "dt:%6.2lfms",
                            DT_ms(m_vps_counter.GetDtAvg()).count());
-        ImGui::TextColored(ImVec4(r, g, b, 1.0f), " ±:%6.2lfms",
+        ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), " ±:%6.2lfms",
                            DT_ms(m_vps_counter.GetDtStd()).count());
       }
     }
@@ -361,7 +361,7 @@ void PerformanceMetrics::DrawImGuiStats(const float backbuffer_scale)
       clamp_window_position();
 
       const FrameBufferSize size = m_frame_buffer_size.load(std::memory_order_relaxed);
-      ImGui::TextColored(ImVec4(r, g, b, 1.0f), "XFB res: %ux%u", size.width, size.height);
+      ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), "XFB res: %ux%u", size.width, size.height);
     }
     ImGui::End();
   }
