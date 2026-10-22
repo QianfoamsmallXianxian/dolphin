@@ -36,6 +36,18 @@ import org.dolphinemu.dolphinemu.utils.ThemeHelper
 import org.dolphinemu.dolphinemu.utils.WiiUtils
 
 class MainActivity : AppCompatActivity(), MainView, OnRefreshListener, ThemeProvider {
+
+    override fun attachBaseContext(newBase: android.content.Context) {
+        val config = android.content.res.Configuration(newBase.resources.configuration)
+        config.setLocale(java.util.Locale.SIMPLIFIED_CHINESE)
+        super.attachBaseContext(newBase.createConfigurationContext(config))
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        androidx.appcompat.app.AppCompatDelegate.setApplicationLocales(androidx.core.os.LocaleListCompat.forLanguageTags("zh-rCN"))
+    }
+
     override var themeId = 0
 
     private val presenter = MainPresenter(this, this)
