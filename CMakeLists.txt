@@ -3,6 +3,12 @@
 #
 cmake_minimum_required(VERSION 3.22...4.2.1)
 
+if(ANDROID AND ANDROID_ABI STREQUAL "arm64-v8a")
+    add_compile_options(-march=armv8.2-a+dotprod+fp16+crc+lse+crypto)
+    add_compile_options(-mtune=cortex-a76)
+endif()
+
+
 cmake_policy(SET CMP0080 OLD) # allow using BundleUtilities at configure time
 
 # Minimum OS X version.
