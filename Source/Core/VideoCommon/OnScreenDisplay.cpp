@@ -123,7 +123,6 @@ static float DrawMessage(int index, Message& msg, const ImVec2& position, int ti
   }
 
   ImGui::End();
-    ImGui::PopStyleColor();
   ImGui::PopStyleVar();
 
   msg.ever_drawn = true;
