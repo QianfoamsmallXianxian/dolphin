@@ -1,5 +1,4 @@
 name: Build Dolphin APK
-
 on:
   push:
     branches: [ "master" ]
@@ -13,36 +12,29 @@ on:
         options:
           - debug
           - release
-
 env:
   NDK_VERSION: '30.0.15729638'
-  CMAKE_VERSION: '3.22.1'
+  CMAKE_VERSION: '3.29.6'
   COMPILE_SDK: '36'
   BUILD_TOOLS: '36.0.0'
-
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 240
-
     steps:
       - uses: actions/checkout@v4
-
       - name: Install System Deps
         run: |
           sudo apt-get update
           sudo apt-get install -y ninja-build ccache
-
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '21'
           cache: 'gradle'
-
       - uses: android-actions/setup-android@v3
         with:
           packages: 'platform-tools'
-
       - name: Install Android SDK
         run: |
           yes | sdkmanager --licenses > /dev/null || true
@@ -53,21 +45,18 @@ jobs:
             "cmake;${CMAKE_VERSION}"
           echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/${NDK_VERSION}" >> $GITHUB_ENV
           echo "ANDROID_NDK=$ANDROID_HOME/ndk/${NDK_VERSION}" >> $GITHUB_ENV
-
       - name: Cache CCache
         uses: actions/cache@v4
         with:
           path: ~/.ccache
-          key: ccache-${{ runner.os }}-${{ github.sha }}
-          restore-keys: ccache-${{ runner.os }}-
-
+          key: ccache-Linux-v1
+          restore-keys: ccache-Linux-v1
       - name: Cache .cxx
         uses: actions/cache@v4
         with:
           path: Source/Android/app/.cxx
-          key: cxx-${{ runner.os }}-${{ hashFiles('Source/**/*.cpp', 'Source/**/*.h') }}
-          restore-keys: cxx-${{ runner.os }}-
-
+          key: cxx-Linux-v1
+          restore-keys: cxx-Linux-v1
       - name: Build
         working-directory: Source/Android
         env:
@@ -75,22 +64,24 @@ jobs:
         run: |
           chmod +x gradlew
           export CCACHE_DIR=~/.ccache
-          ccache --max-size=2G
+          ccache --max-size=3G
+          ccache -z
           ./gradlew assemble${BUILD_TYPE^} \
             --no-daemon \
             --stacktrace \
             --build-cache \
             --max-workers=4 \
             -Dorg.gradle.jvmargs="-Xmx4g -XX:MaxMetaspaceSize=1g"
-
+          ccache -s
       - name: Rename APK
         working-directory: Source/Android
+        env:
+          BUILD_TYPE: ${{ github.event.inputs.build_type || 'debug' }}
         run: |
-          mkdir -p build/outputs/apk/debug/
-          mv app/build/outputs/apk/debug/app-debug.apk build/outputs/apk/debug/Dolphin.apk || true
-
+          mkdir -p build/outputs/apk/${BUILD_TYPE}/
+          find app/build/outputs/apk/${BUILD_TYPE}/ -name "*.apk" -exec mv {} build/outputs/apk/${BUILD_TYPE}/Dolphin.apk \;
       - uses: actions/upload-artifact@v4
         with:
-          name: Dolphin
-          path: Source/Android/build/outputs/apk/debug/Dolphin.apk
+          name: Dolphin-${{ github.event.inputs.build_type || 'debug' }}
+          path: Source/Android/build/outputs/apk/${{ github.event.inputs.build_type || 'debug' }}/Dolphin.apk
           if-no-files-found: error
