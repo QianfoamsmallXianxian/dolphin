@@ -203,11 +203,6 @@ void VideoConfig::Refresh()
 
   vertex_loader_type = Config::Get(Config::GFX_VERTEX_LOADER_TYPE);
 
-  bEFBAccessEnable = true;
-  bEFBEmulateFormatChanges = true;
-  bSkipEFBCopyToRam = false;
-  bSkipXFBCopyToRam = false;
-  bImmediateXFB = false;
 }
 
 void VideoConfig::VerifyValidity()
