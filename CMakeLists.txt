@@ -7,6 +7,18 @@ if(ANDROID)
     add_compile_options(-O3)
     if(ANDROID_ABI STREQUAL "arm64-v8a")
         add_compile_options(-march=armv8.2-a+dotprod+fp16+crc+crypto -mtune=cortex-a715)
+
+add_compile_options(-ffast-math)
+add_compile_options(-fno-finite-math-only)
+add_compile_options(-fno-strict-aliasing)
+add_compile_options(-funroll-loops)
+add_compile_options(-fomit-frame-pointer)
+add_compile_options(-DNDEBUG)
+include(CheckIPOSupported)
+check_ipo_supported(RESULT result OUTPUT output)
+if(result)
+    set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
+endif()
     elseif(ANDROID_ABI STREQUAL "x86_64")
         add_compile_options(-march=x86-64-v3)
     endif()
@@ -338,13 +350,10 @@ else()
   add_definitions(-D_DEFAULT_SOURCE)
 
   # gcc uses some optimizations which might break stuff without this flag
-  check_and_add_flag(NO_STRICT_ALIASING -fno-strict-aliasing)
   check_and_add_flag(NO_EXCEPTIONS -fno-exceptions)
 
-  check_and_add_flag(VISIBILITY_INLINES_HIDDEN -fvisibility-inlines-hidden)
   check_and_add_flag(VISIBILITY_HIDDEN -fvisibility=hidden)
 
-  check_and_add_flag(FOMIT_FRAME_POINTER -fomit-frame-pointer NO_DEBINFO_ONLY)
 
   dolphin_compile_definitions(_DEBUG DEBUG_ONLY)
   check_and_add_flag(GGDB -ggdb DEBUG_ONLY)
@@ -372,7 +381,6 @@ if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
     list(APPEND CMAKE_PREFIX_PATH "/usr")
   endif()
 
-  # Prevents Xcode from overriding the -fno-strict-aliasing flag
   set(CMAKE_XCODE_ATTRIBUTE_GCC_STRICT_ALIASING NO)
 
   # Specify target CPUs.
@@ -404,10 +412,8 @@ endif()
 
 if(ENABLE_LTO)
   include(CheckIPOSupported)
-  check_ipo_supported(RESULT supported OUTPUT error)
 
   if(supported)
-    set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
   else()
     message(STATUS "IPO / LTO not supported: <${error}>")
   endif()
