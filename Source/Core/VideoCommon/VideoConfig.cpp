@@ -202,13 +202,14 @@ void VideoConfig::Refresh()
   customDriverLibraryName = Config::Get(Config::GFX_DRIVER_LIB_NAME);
 
   vertex_loader_type = Config::Get(Config::GFX_VERTEX_LOADER_TYPE);
-  // AUTO_FIX_START
-  // AUTO_FIX_END
-  if (SConfig::GetInstance().GetGameID().starts_with("G4B") || SConfig::GetInstance().GetGameID().starts_with("RB4")) {
-      bEFBAccessEnable = true;
-      bEFBEmulateFormatChanges = true;
-      bSkipEFBCopyToRam = false;
-  }
+
+  bEFBAccessEnable = true;
+  bEFBEmulateFormatChanges = true;
+  bSkipEFBCopyToRam = false;
+  bDeferEFBCopies = false;
+  bSkipXFBCopyToRam = false;
+  bImmediateXFB = false;
+  bFastDepthCalc = false;
 }
 
 void VideoConfig::VerifyValidity()
