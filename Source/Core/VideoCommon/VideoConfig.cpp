@@ -209,10 +209,8 @@ void VideoConfig::Refresh()
   bDeferEFBCopies = false;
   // AUTO_FIX_END
   bSkipXFBCopyToRam = false;
-  bImmediateXFBEnable = false;
-  bSkipDuplicateXFBs = false;
+  bImmediateXFB = false;
   bFastDepthCalc = false;
-  bBoundingBoxEnable = true;
 }
 
 void VideoConfig::VerifyValidity()
