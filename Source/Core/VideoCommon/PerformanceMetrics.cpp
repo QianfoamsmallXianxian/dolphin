@@ -201,7 +201,7 @@ void PerformanceMetrics::DrawImGuiStats(const float backbuffer_scale)
     // Position in the top-right corner of the screen.
     ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f - 120.0f, 10.0f), ImGuiCond_Always);
     ImGui::SetNextWindowSize(ImVec2(graph_width, graph_height), set_next_size_condition);
-    ImGui::SetNextWindowBgAlpha(bg_alpha);
+    ImGui::SetNextWindowBgAlpha(0.0f);
     if (ImGui::Begin("PerformanceGraphs", nullptr, graph_flags))
     {
       static constexpr std::size_t num_ticks = 17;
@@ -275,7 +275,7 @@ void PerformanceMetrics::DrawImGuiStats(const float backbuffer_scale)
   {
     // Position in the top-right corner of the screen.
     ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f - 120.0f, 10.0f), ImGuiCond_Always);
-    ImGui::SetNextWindowBgAlpha(bg_alpha);
+    ImGui::SetNextWindowBgAlpha(0.0f);
 
     if (ImGui::Begin("SpeedStats", nullptr, imgui_flags))
     {
@@ -294,7 +294,7 @@ void PerformanceMetrics::DrawImGuiStats(const float backbuffer_scale)
   {
     // Position in the top-right corner of the screen.
     ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f - 120.0f, 10.0f), ImGuiCond_Always);
-    ImGui::SetNextWindowBgAlpha(bg_alpha);
+    ImGui::SetNextWindowBgAlpha(0.0f);
 
     if (ImGui::Begin("FPSStats", nullptr, imgui_flags))
     {
@@ -324,7 +324,7 @@ void PerformanceMetrics::DrawImGuiStats(const float backbuffer_scale)
   {
     // Position in the top-right corner of the screen.
     ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f - 120.0f, 10.0f), ImGuiCond_Always);
-    ImGui::SetNextWindowBgAlpha(bg_alpha);
+    ImGui::SetNextWindowBgAlpha(0.0f);
 
     if (ImGui::Begin("VPSStats", nullptr, imgui_flags))
     {
@@ -349,7 +349,7 @@ void PerformanceMetrics::DrawImGuiStats(const float backbuffer_scale)
   if (g_ActiveConfig.bShowInternalResolution)
   {
     ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x * 0.5f - 120.0f, 10.0f), ImGuiCond_Always);
-    ImGui::SetNextWindowBgAlpha(bg_alpha);
+    ImGui::SetNextWindowBgAlpha(0.0f);
 
     if (ImGui::Begin("ResolutionStats", nullptr, imgui_flags))
     {
