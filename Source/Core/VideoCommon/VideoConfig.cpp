@@ -206,10 +206,8 @@ void VideoConfig::Refresh()
   bEFBAccessEnable = true;
   bEFBEmulateFormatChanges = true;
   bSkipEFBCopyToRam = false;
-  bDeferEFBCopies = false;
   bSkipXFBCopyToRam = false;
   bImmediateXFB = false;
-  bFastDepthCalc = false;
 }
 
 void VideoConfig::VerifyValidity()
