@@ -203,14 +203,12 @@ void VideoConfig::Refresh()
 
   vertex_loader_type = Config::Get(Config::GFX_VERTEX_LOADER_TYPE);
   // AUTO_FIX_START
-  bEFBAccessEnable = true;
-  bEFBEmulateFormatChanges = true;
-  bSkipEFBCopyToRam = false;
-  bDeferEFBCopies = false;
   // AUTO_FIX_END
-  bSkipXFBCopyToRam = false;
-  bImmediateXFB = false;
-  bFastDepthCalc = false;
+  if (SConfig::GetInstance().GetGameID().starts_with("G4B") || SConfig::GetInstance().GetGameID().starts_with("RB4")) {
+      bEFBAccessEnable = true;
+      bEFBEmulateFormatChanges = true;
+      bSkipEFBCopyToRam = false;
+  }
 }
 
 void VideoConfig::VerifyValidity()
