@@ -5,14 +5,14 @@ cmake_minimum_required(VERSION 3.22...4.2.1)
 
 if(ANDROID)
     if(ANDROID_ABI STREQUAL "arm64-v8a")
-        add_compile_options(-march=armv8.2-a+dotprod+fp16+crc+crypto -mtune=cortex-a715)
+
     elseif(ANDROID_ABI STREQUAL "x86_64")
-        add_compile_options(-march=x86-64-v3)
+
     endif()
 endif()
 endif()
     elseif(ANDROID_ABI STREQUAL "x86_64")
-        add_compile_options(-march=x86-64-v3)
+
     endif()
 endif()
 
@@ -35,6 +35,15 @@ set(CMAKE_USER_MAKE_RULES_OVERRIDE "${CMAKE_CURRENT_SOURCE_DIR}/CMake/FlagsOverr
 set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 
 project(dolphin-emu)
+
+if(ANDROID)
+    if(ANDROID_ABI STREQUAL "arm64-v8a")
+        add_compile_options(-march=armv8.2-a+dotprod+fp16+crc+crypto -mtune=cortex-a715)
+    elseif(ANDROID_ABI STREQUAL "x86_64")
+        add_compile_options(-march=x86-64-v3)
+    endif()
+endif()
+
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/CMake)
 
