@@ -203,6 +203,11 @@ void VideoConfig::Refresh()
 
   vertex_loader_type = Config::Get(Config::GFX_VERTEX_LOADER_TYPE);
 
+
+  bCPUThread = true;
+  bFastmem = true;
+  bAsyncShaderCompilation = true;
+  bVulkanMultithreadedRendering = true;
 }
 
 void VideoConfig::VerifyValidity()
