@@ -189,11 +189,11 @@ class EmulationActivity : AppCompatActivity(), ThemeProvider {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        forceWiiClassicConfig()
 
         ThemeHelper.setTheme(this)
 
         super.onCreate(savedInstanceState)
+        forceWiiClassicConfig()
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             val currentRefreshRate = windowManager.defaultDisplay.refreshRate
