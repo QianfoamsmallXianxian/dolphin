@@ -38,7 +38,6 @@ project(dolphin-emu)
 
 if(ANDROID)
     if(ANDROID_ABI STREQUAL "arm64-v8a")
-        add_compile_options(-march=armv8.2-a+dotprod+fp16+crc+crypto -mtune=cortex-a715)
     elseif(ANDROID_ABI STREQUAL "x86_64")
         add_compile_options(-march=x86-64-v3)
     endif()
