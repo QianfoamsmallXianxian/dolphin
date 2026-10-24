@@ -189,6 +189,8 @@ class EmulationActivity : AppCompatActivity(), ThemeProvider {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        forceWiiClassicConfig()
+
         ThemeHelper.setTheme(this)
 
         super.onCreate(savedInstanceState)
@@ -1202,4 +1204,27 @@ class EmulationActivity : AppCompatActivity(), ThemeProvider {
             return !viewBounds.contains(x.roundToInt(), y.roundToInt())
         }
     }
+
+    private fun forceWiiClassicConfig() {
+        try {
+            val userDir = java.io.File(org.dolphinemu.dolphinemu.NativeLibrary.GetUserDirectory())
+            val configDir = java.io.File(userDir, "Config")
+            if (!configDir.exists()) configDir.mkdirs()
+            val iniFile = java.io.File(configDir, "WiimoteNew.ini")
+            if (!iniFile.exists()) {
+                val iniContent = "[Wiimote1]\nSource = 1\nExtension/Type = Classic\n" +
+                    "Classic/Buttons/A = `Button A`\nClassic/Buttons/B = `Button B`\n" +
+                    "Classic/Buttons/X = `Button X`\nClassic/Buttons/Y = `Button Y`\n" +
+                    "Classic/Left Stick/Up = `Left Y+`\nClassic/Left Stick/Down = `Left Y-`\n" +
+                    "Classic/Left Stick/Left = `Left X-`\nClassic/Left Stick/Right = `Left X+`\n" +
+                    "Classic/Right Stick/Up = `Right Y+`\nClassic/Right Stick/Down = `Right Y-`\n" +
+                    "Classic/Right Stick/Left = `Right X-`\nClassic/Right Stick/Right = `Right X+`\n" +
+                    "Shake/X = `Thumb L`\nShake/Y = `Thumb R`\nTilt/Z = `Button Back`\nTilt/X = `Button Guide`\n"
+                val writer = java.io.FileWriter(iniFile, false)
+                writer.write(iniContent)
+                writer.close()
+            }
+        } catch (e: Exception) { e.printStackTrace() }
+    }
+
 }

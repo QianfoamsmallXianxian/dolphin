@@ -16,12 +16,6 @@ endif()
     endif()
 endif()
 
-
-if(ANDROID AND ANDROID_ABI STREQUAL "arm64-v8a")
-    add_compile_options(-mtune=cortex-a76)
-endif()
-
-
 cmake_policy(SET CMP0080 OLD) # allow using BundleUtilities at configure time
 
 # Minimum OS X version.
@@ -115,7 +109,6 @@ endif()
 if(NOT ANDROID)
   option(ENABLE_CLI_TOOL "Enable dolphin-tool, a CLI-based utility for functions such as managing disc images" ON)
 endif()
-
 
 set(USE_SYSTEM_LIBS "AUTO" CACHE STRING "Use system libraries instead of bundled libraries.  ON - Always use system and fail if unavailable, OFF - Always use bundled, AUTO - Use system if available, otherwise use bundled.  Default is AUTO")
 if(APPROVED_VENDORED_DEPENDENCIES)
@@ -345,7 +338,6 @@ else()
   check_and_add_flag(NO_EXCEPTIONS -fno-exceptions)
 
   check_and_add_flag(VISIBILITY_HIDDEN -fvisibility=hidden)
-
 
   dolphin_compile_definitions(_DEBUG DEBUG_ONLY)
   check_and_add_flag(GGDB -ggdb DEBUG_ONLY)
@@ -641,7 +633,6 @@ if(ENABLE_VULKAN)
   if(APPLE AND USE_BUNDLED_MOLTENVK)
     dolphin_add_bundled_library(MoltenVK Externals/MoltenVK)
   endif()
-
 
   if (ANDROID AND _M_ARM_64)
     dolphin_add_bundled_library(libadrenotools Externals/libadrenotools)
