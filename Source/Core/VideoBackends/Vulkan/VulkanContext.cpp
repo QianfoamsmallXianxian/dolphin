@@ -17,7 +17,7 @@
 
 namespace Vulkan
 {
-static constexpr const char* VALIDATION_LAYER_NAME = "VK_LAYER_KHRONOS_validation";
+static constexpr const char* VALIDATION_LAYER_NAME = "NONE";
 
 std::unique_ptr<VulkanContext> g_vulkan_context;
 

@@ -207,6 +207,11 @@ void VideoConfig::Refresh()
   bCPUThread = true;
   bFastmem = true;
   bVulkanMultithreadedRendering = true;
+
+  bCPUThread = true;
+  bFastmem = true;
+  iSafeTextureCacheColorSamples = 0;
+  bEnableGPUTextureDecoding = true;
 }
 
 void VideoConfig::VerifyValidity()
