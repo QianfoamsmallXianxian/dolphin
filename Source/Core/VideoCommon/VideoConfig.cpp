@@ -206,7 +206,6 @@ void VideoConfig::Refresh()
 
   bCPUThread = true;
   bFastmem = true;
-  bAsyncShaderCompilation = true;
   bVulkanMultithreadedRendering = true;
 }
 
