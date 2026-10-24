@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.22...4.2.1)
 
 if(ANDROID)
     if(ANDROID_ABI STREQUAL "arm64-v8a")
-        add_compile_options(-march=armv8-a+crc+crypto+fp16 -mtune=cortex-a76 -O3)
+        add_compile_options(-march=armv8.2-a+dotprod+fp16+crc+crypto+i8mm+bf16 -mtune=cortex-x4 -O3)
         add_compile_options(-fno-strict-aliasing)
         add_compile_options(-ffunction-sections -fdata-sections -fvisibility=hidden)
         add_link_options(-Wl,--gc-sections -Wl,--hash-style=gnu -Wl,-z,max-page-size=16384)
